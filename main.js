@@ -472,7 +472,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize with both text and images
     window.addEventListener("load", () => {
-        const effect = new ScatterCursorEffect(
+        window.addEventListener("load", () => {
+    console.log('Page loaded, initializing effect...');
+    
+    try {
+    const effect = new ScatterCursorEffect(
             ".split-text",                    // Text selectors
             ".floating",  // Image selectors
             {
@@ -492,19 +496,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         );
-
-    });
-    // End scattered letters effect
-window.addEventListener("load", () => {
-    console.log('Page loaded, initializing effect...');
-    
-    try {
-        const effect = new ScatterCursorEffect(
-            ".split-text",
-            ".scatter-image, .floating-img",
-            { /* your config */ }
-        );
-        
         console.log('Effect initialized');
         console.log('Text containers:', effect.textContainers.length);
         console.log('Image elements:', effect.imageElements.length);
@@ -535,6 +526,11 @@ if (effect.textContainers.length > 0) {
     });
 }
 });
+        
+
+    });
+    // End scattered letters effect
+
     // Start infinite scroll loop
 
     // repeat first three items by cloning them and appending them to the .grid
