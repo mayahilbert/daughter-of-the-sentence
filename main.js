@@ -5,7 +5,57 @@ document.addEventListener("DOMContentLoaded", () => {
         infinite: true,
         syncTouch: true
     });
+// Add before your ScatterCursorEffect initialization
+(function() {
+    const consoleDiv = document.createElement('div');
+    consoleDiv.id = 'mobile-console';
+    consoleDiv.style.cssText = `
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: 200px;
+        overflow-y: auto;
+        background: rgba(0,0,0,0.9);
+        color: #0f0;
+        font-family: monospace;
+        font-size: 10px;
+        padding: 10px;
+        z-index: 999999;
+        border-top: 2px solid #0f0;
+    `;
+    document.body.appendChild(consoleDiv);
 
+    const oldLog = console.log;
+    const oldError = console.error;
+    const oldWarn = console.warn;
+
+    function addLog(msg, type = 'log') {
+        const color = type === 'error' ? '#f00' : type === 'warn' ? '#ff0' : '#0f0';
+        const line = document.createElement('div');
+        line.style.color = color;
+        line.textContent = `[${type.toUpperCase()}] ${msg}`;
+        consoleDiv.appendChild(line);
+        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    }
+
+    console.log = function(...args) {
+        oldLog.apply(console, args);
+        addLog(args.join(' '), 'log');
+    };
+    console.error = function(...args) {
+        oldError.apply(console, args);
+        addLog(args.join(' '), 'error');
+    };
+    console.warn = function(...args) {
+        oldWarn.apply(console, args);
+        addLog(args.join(' '), 'warn');
+    };
+
+    window.onerror = function(msg, url, line, col, error) {
+        addLog(`ERROR: ${msg} at ${line}:${col}`, 'error');
+    };
+})();
     class ScatterCursorEffect {
         constructor(cssSelectors, imageSelectors = [], options = {}) {
             this.mouse = { x: 0, y: 0 };
@@ -445,7 +495,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
     // End scattered letters effect
-
+window.addEventListener("load", () => {
+    console.log('Page loaded, initializing effect...');
+    
+    try {
+        const effect = new ScatterCursorEffect(
+            ".split-text",
+            ".scatter-image, .floating-img",
+            { /* your config */ }
+        );
+        
+        console.log('Effect initialized');
+        console.log('Text containers:', effect.textContainers.length);
+        console.log('Image elements:', effect.imageElements.length);
+        
+        // Check first text container
+        if (effect.textContainers.length > 0) {
+            const first = effect.textContainers[0];
+            console.log('First container chars:', first.characters.length);
+            console.log('First char:', first.characters[0]);
+            console.log('First char visible?', 
+                window.getComputedStyle(first.characters[0]).opacity,
+                window.getComputedStyle(first.characters[0]).display
+            );
+        }
+        
+        // Make effect available globally for manual testing
+        window.debugEffect = effect;
+        
+    } catch(e) {
+        console.error('Error initializing:', e.message);
+        console.error('Stack:', e.stack);
+    }
+});
     // Start infinite scroll loop
 
     // repeat first three items by cloning them and appending them to the .grid
