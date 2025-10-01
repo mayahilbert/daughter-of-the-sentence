@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
         infinite: true,
         syncTouch: true
     });
-// Add before your ScatterCursorEffect initialization
-(function() {
-    const consoleDiv = document.createElement('div');
-    consoleDiv.id = 'mobile-console';
-    consoleDiv.style.cssText = `
+    // Add before your ScatterCursorEffect initialization
+    (function () {
+        const consoleDiv = document.createElement('div');
+        consoleDiv.id = 'mobile-console';
+        consoleDiv.style.cssText = `
         position: fixed;
         bottom: 0;
         left: 0;
@@ -24,38 +24,38 @@ document.addEventListener("DOMContentLoaded", () => {
         z-index: 999999;
         border-top: 2px solid #0f0;
     `;
-    document.body.appendChild(consoleDiv);
+        document.body.appendChild(consoleDiv);
 
-    const oldLog = console.log;
-    const oldError = console.error;
-    const oldWarn = console.warn;
+        const oldLog = console.log;
+        const oldError = console.error;
+        const oldWarn = console.warn;
 
-    function addLog(msg, type = 'log') {
-        const color = type === 'error' ? '#f00' : type === 'warn' ? '#ff0' : '#0f0';
-        const line = document.createElement('div');
-        line.style.color = color;
-        line.textContent = `[${type.toUpperCase()}] ${msg}`;
-        consoleDiv.appendChild(line);
-        consoleDiv.scrollTop = consoleDiv.scrollHeight;
-    }
+        function addLog(msg, type = 'log') {
+            const color = type === 'error' ? '#f00' : type === 'warn' ? '#ff0' : '#0f0';
+            const line = document.createElement('div');
+            line.style.color = color;
+            line.textContent = `[${type.toUpperCase()}] ${msg}`;
+            consoleDiv.appendChild(line);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
 
-    console.log = function(...args) {
-        oldLog.apply(console, args);
-        addLog(args.join(' '), 'log');
-    };
-    console.error = function(...args) {
-        oldError.apply(console, args);
-        addLog(args.join(' '), 'error');
-    };
-    console.warn = function(...args) {
-        oldWarn.apply(console, args);
-        addLog(args.join(' '), 'warn');
-    };
+        console.log = function (...args) {
+            oldLog.apply(console, args);
+            addLog(args.join(' '), 'log');
+        };
+        console.error = function (...args) {
+            oldError.apply(console, args);
+            addLog(args.join(' '), 'error');
+        };
+        console.warn = function (...args) {
+            oldWarn.apply(console, args);
+            addLog(args.join(' '), 'warn');
+        };
 
-    window.onerror = function(msg, url, line, col, error) {
-        addLog(`ERROR: ${msg} at ${line}:${col}`, 'error');
-    };
-})();
+        window.onerror = function (msg, url, line, col, error) {
+            addLog(`ERROR: ${msg} at ${line}:${col}`, 'error');
+        };
+    })();
     class ScatterCursorEffect {
         constructor(cssSelectors, imageSelectors = [], options = {}) {
             this.mouse = { x: 0, y: 0 };
@@ -111,22 +111,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
             elements.forEach((el, idx) => {
                 // Manual text splitting (replacing SplitText for better iOS compatibility)
-            const originalText = el.textContent;
-            el.innerHTML = originalText.split('').map(char => {
-                // Preserve spaces
-                const displayChar = char === ' ' ? '&nbsp;' : char;
-                return `<span class="char" style="display:inline-block;position:relative;will-change:transform;">${displayChar}</span>`;
-            }).join('');
-            
-            const characters = Array.from(el.querySelectorAll('.char'));
-            
-            const container = {
-                element: el,
-                splitInstance: null,
-                characters: characters,
-                containerIndex: idx,
-                bounds: null
-            };
+                const originalText = el.textContent;
+                el.innerHTML = originalText.split('').map(char => {
+                    // Preserve spaces
+                    const displayChar = char === ' ' ? '&nbsp;' : char;
+                    return `<span class="char" style="display:inline-block;position:relative;will-change:transform;">${displayChar}</span>`;
+                }).join('');
+
+                const characters = Array.from(el.querySelectorAll('.char'));
+
+                const container = {
+                    element: el,
+                    splitInstance: null,
+                    characters: characters,
+                    containerIndex: idx,
+                    bounds: null
+                };
 
                 container.characters.forEach(char => {
                     const rect = char.getBoundingClientRect();
@@ -473,60 +473,60 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize with both text and images
     window.addEventListener("load", () => {
         window.addEventListener("load", () => {
-    console.log('Page loaded, initializing effect...');
-    
-    try {
-    const effect = new ScatterCursorEffect(
-            ".split-text",                    // Text selectors
-            ".floating",  // Image selectors
-            {
-                // Global config
-                influenceRadius: 300,
-                maxDisplacement: 200,
-                maxRotation: 50,
+            console.log('Page loaded, initializing effect...');
 
-                // Image-specific config
-                imageConfig: {
-                    influenceRadius: 160,
-                    maxDisplacement: 70,
-                    maxRotation: 10,
-                    gsapDuration: 2,
-                    gsapEasing: "power2.out",
-                    boundaries: { enabled: true, margin: 100 }
+            try {
+                const effect = new ScatterCursorEffect(
+                    ".split-text",                    // Text selectors
+                    ".floating",  // Image selectors
+                    {
+                        // Global config
+                        influenceRadius: 300,
+                        maxDisplacement: 200,
+                        maxRotation: 50,
+
+                        // Image-specific config
+                        imageConfig: {
+                            influenceRadius: 160,
+                            maxDisplacement: 70,
+                            maxRotation: 10,
+                            gsapDuration: 2,
+                            gsapEasing: "power2.out",
+                            boundaries: { enabled: true, margin: 100 }
+                        }
+                    }
+                );
+                console.log('Effect initialized');
+                console.log('Text containers:', effect.textContainers.length);
+                console.log('Image elements:', effect.imageElements.length);
+
+                // Check first text container
+                if (effect.textContainers.length > 0) {
+                    const first = effect.textContainers[0];
+                    console.log('First container chars:', first.characters.length);
+                    console.log('First char:', first.characters[0]);
+                    console.log('First char visible?',
+                        window.getComputedStyle(first.characters[0]).opacity,
+                        window.getComputedStyle(first.characters[0]).display
+                    );
                 }
+
+                // Make effect available globally for manual testing
+                window.debugEffect = effect;
+
+            } catch (e) {
+                console.error('Error initializing:', e.message);
+                console.error('Stack:', e.stack);
             }
-        );
-        console.log('Effect initialized');
-        console.log('Text containers:', effect.textContainers.length);
-        console.log('Image elements:', effect.imageElements.length);
-        
-        // Check first text container
-        if (effect.textContainers.length > 0) {
-            const first = effect.textContainers[0];
-            console.log('First container chars:', first.characters.length);
-            console.log('First char:', first.characters[0]);
-            console.log('First char visible?', 
-                window.getComputedStyle(first.characters[0]).opacity,
-                window.getComputedStyle(first.characters[0]).display
-            );
-        }
-        
-        // Make effect available globally for manual testing
-        window.debugEffect = effect;
-        
-    } catch(e) {
-        console.error('Error initializing:', e.message);
-        console.error('Stack:', e.stack);
-    }
-    // Add after effect initialization
-if (effect.textContainers.length > 0) {
-    effect.textContainers[0].characters.forEach((char, i) => {
-        char.style.border = '1px solid red';
-        char.style.background = 'rgba(255,0,0,0.1)';
-    });
-}
-});
-        
+            // Add after effect initialization
+            if (effect.textContainers.length > 0) {
+                effect.textContainers[0].characters.forEach((char, i) => {
+                    char.style.border = '1px solid red';
+                    char.style.background = 'rgba(255,0,0,0.1)';
+                });
+            }
+        });
+
 
     });
     // End scattered letters effect
