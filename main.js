@@ -1,12 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    gsap.registerPlugin(SplitText);
-    const lenis = new Lenis({
-        infinite: true,
-        syncTouch: true
-    });
-    // Add before your ScatterCursorEffect initialization
-    (function () {
+(function () {
         const consoleDiv = document.createElement('div');
         consoleDiv.id = 'mobile-console';
         consoleDiv.style.cssText = `
@@ -56,6 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
             addLog(`ERROR: ${msg} at ${line}:${col}`, 'error');
         };
     })();
+document.addEventListener("DOMContentLoaded", () => {
+
+    gsap.registerPlugin(SplitText);
+    const lenis = new Lenis({
+        infinite: true,
+        syncTouch: true
+    });
+    // Add before your ScatterCursorEffect initialization
+    
     class ScatterCursorEffect {
         constructor(cssSelectors, imageSelectors = [], options = {}) {
             this.mouse = { x: 0, y: 0 };
@@ -472,7 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize with both text and images
     window.addEventListener("load", () => {
-        window.addEventListener("load", () => {
             console.log('Page loaded, initializing effect...');
 
             try {
@@ -510,6 +510,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         window.getComputedStyle(first.characters[0]).display
                     );
                 }
+// Add after effect initialization
+            if (effect.textContainers.length > 0) {
+                effect.textContainers[0].characters.forEach((char, i) => {
+                    char.style.border = '1px solid red';
+                    char.style.background = 'rgba(255,0,0,0.1)';
+                });
+            }
 
                 // Make effect available globally for manual testing
                 window.debugEffect = effect;
@@ -518,15 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error('Error initializing:', e.message);
                 console.error('Stack:', e.stack);
             }
-            // Add after effect initialization
-            if (effect.textContainers.length > 0) {
-                effect.textContainers[0].characters.forEach((char, i) => {
-                    char.style.border = '1px solid red';
-                    char.style.background = 'rgba(255,0,0,0.1)';
-                });
-            }
-        });
-
+            
 
     });
     // End scattered letters effect
