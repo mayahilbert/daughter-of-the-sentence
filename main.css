@@ -313,16 +313,22 @@ body {
 
 .curatorial-page {
     color: #9E9576;
-    background-image: url("images/postcard_lynn-bg.jpg");
-    background-size: 60%;
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     min-height: 200vh;
 }
 
+@media screen and (min-width: 768px) {
+    .curatorial-page {
+        background-image: url("images/postcard_lynn-bg.jpg");
+        background-size: 60%;
+        background-attachment: fixed;
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+}
+
 .curatorial-statement {
-    margin: 6em 2em 2em 2em;
+    margin: 6em 3vw;
     max-width: 65ch;
 }
 
