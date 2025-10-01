@@ -237,6 +237,20 @@ font-weight: 600;
     line-height: 1;
     cursor: pointer;
 }
+/* iOS fixes */
+
+.split-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.char {
+    display: inline-block;
+    position: relative;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
 
 .home-title-wrapper h2 {
     margin: 0;
@@ -653,3 +667,4 @@ margin: 0 0 30vh 0;
       font-size: 70%;
 height: 100%;padding: 1em;
 }
+

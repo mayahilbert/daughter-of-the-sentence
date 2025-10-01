@@ -1,87 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Start scattered letters and images effect
-    // Start scattered letters and images effect
+
     gsap.registerPlugin(SplitText);
-    //gsap.registerPlugin(ScrollTrigger);
-const lenis = new Lenis({
-	infinite: true,
-	syncTouch: true
-});
-    /* Scroll page flip*/
-    //const pageFlip = new St.PageFlip(document.getElementById("gnaw-flip"), {
-    //    width: 800, // required parameter - base page width
-    //    height: 500, // required parameter - base page height
-    //    size: "stretch",
-    //    drawShadow: false,
-    //    usePortrait: true,
-    //    mobileScrollSupport: false,
-    //    swipeDistance: 10
-    //});
+    const lenis = new Lenis({
+        infinite: true,
+        syncTouch: true
+    });
 
-    //pageFlip.loadFromHTML(document.querySelectorAll('.gnaw-img'));
-    //    // Handle scroll events over #book
-    //    const bookElement = document.getElementById('gnaw-flip');
-    //    let isFlipping = false;
-    //    bookElement.addEventListener('wheel', (event) => {
-    //        if (isFlipping) return;
-    //        event.stopPropagation(); // Prevent Lenis interference
-    //        const currentPage = pageFlip.getCurrentPageIndex();
-    //        const totalPages = pageFlip.getPageCount();
-
-    //        isFlipping = true;
-    //        if (event.deltaY > 0 && currentPage < totalPages - 1) {
-    //            // Scroll down: Next page
-    //            pageFlip.flipNext('top');
-    //        } else if (event.deltaY < 0 && currentPage > 0) {
-    //            // Scroll up: Previous page
-    //            pageFlip.flipPrev('top');
-    //        }
-    //        setTimeout(() => { isFlipping = false; }, pageFlip.getSettings().flippingTime);
-    //    });
-
-    //    // Handle touch swipes for mobile
-    //    let touchStartY = 0;
-    //    bookElement.addEventListener('touchstart', (e) => {
-    //        touchStartY = e.touches[0].clientY;
-    //    });
-    //    bookElement.addEventListener('touchend', (e) => {
-    //        if (isFlipping) return;
-    //        e.stopPropagation();
-    //        const touchEndY = e.changedTouches[0].clientY;
-    //        const deltaY = touchStartY - touchEndY;
-    //        const currentPage = pageFlip.getCurrentPageIndex();
-    //        const totalPages = pageFlip.getPageCount();
-    //        isFlipping = true;
-    //        if (deltaY > 30 && currentPage < totalPages - 1) {
-    //            // Swipe up: Next page
-    //            pageFlip.flipNext('top');
-    //        } else if (deltaY < -30 && currentPage > 0) {
-    //            // Swipe down: Previous page
-    //            pageFlip.flipPrev('top');
-    //        }
-    //        setTimeout(() => { isFlipping = false; }, pageFlip.getSettings().flippingTime);
-    //    });
-
-    //    // Unlock scroll on last page
-    //    pageFlip.on('flip', (e) => {
-    //        const currentPage = e.data;
-    //        const totalPages = pageFlip.getPageCount();
-    //        if (currentPage === totalPages - 1) {
-    //            // Last page: Enable scrolling
-    //            document.documentElement.style.overflowY = 'auto';
-    //            lenis.start();
-    //        } else {
-    //            // Not last page: Lock scrolling
-    //            document.documentElement.style.overflowY = 'hidden';
-    //            lenis.stop();
-    //        }
-    //        console.log('Current page:', currentPage);
-    //    });
-
-    //    // Event logging
-    //    pageFlip.on('changeOrientation', (e) => {
-    //        console.log('Orientation:', e.data); // Should stay 'portrait'
-    //    });
     class ScatterCursorEffect {
         constructor(cssSelectors, imageSelectors = [], options = {}) {
             this.mouse = { x: 0, y: 0 };
@@ -504,18 +428,16 @@ const lenis = new Lenis({
 
                 // Image-specific config
                 imageConfig: {
-                    influenceRadius: 160,      
-                    maxDisplacement: 70,      
-                    maxRotation: 10,           
-                    gsapDuration: 2,         
+                    influenceRadius: 160,
+                    maxDisplacement: 70,
+                    maxRotation: 10,
+                    gsapDuration: 2,
                     gsapEasing: "power2.out",
                     boundaries: { enabled: true, margin: 100 }
                 }
             }
         );
 
-        // Uncomment to enable entrance animation
-        // effect.createEntranceAnimation();
     });
     // End scattered letters effect
 
@@ -530,10 +452,6 @@ const lenis = new Lenis({
         }
     };
 
-    //lenis.on('scroll', () => {
-    //    ScrollTrigger.update()
-    //})
-
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
@@ -546,9 +464,7 @@ const lenis = new Lenis({
         requestAnimationFrame(raf);
 
         const refresh = () => {
-            //ScrollTrigger.clearScrollMemory();
             window.history.scrollRestoration = 'manual';
-            //ScrollTrigger.refresh(true);
         }
 
         refresh();
@@ -648,9 +564,10 @@ const lenis = new Lenis({
         // Random position
         imgDiv.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
         imgDiv.style.top = `${Math.random() * (gnawContainer.getBoundingClientRect().height)}px`;
-        img.addEventListener("click", () => { 
-    document.getElementById("gnaw-main").setAttribute('src', img.getAttribute('src'));
-})    }
+        img.addEventListener("click", () => {
+            document.getElementById("gnaw-main").setAttribute('src', img.getAttribute('src'));
+        })
+    }
 
 });
 
