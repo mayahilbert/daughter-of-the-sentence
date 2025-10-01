@@ -111,20 +111,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             elements.forEach((el, idx) => {
-                // Manual text splitting (replacing SplitText for better iOS compatibility)
-                const originalText = el.textContent;
-                el.innerHTML = originalText.split('').map(char => {
-                    // Preserve spaces
-                    const displayChar = char === ' ' ? '&nbsp;' : char;
-                    return `<span class="char" style="display:inline-block;position:relative;will-change:transform;">${displayChar}</span>`;
-                }).join('');
-
-                const characters = Array.from(el.querySelectorAll('.char'));
-
+                  const split = SplitText.create(el, {
+                    type: "words, chars",
+                    charsClass: "char",
+                    reduceWhiteSpace: false
+                });
                 const container = {
                     element: el,
-                    splitInstance: null,
-                    characters: characters,
+                    splitInstance: split,
+                    characters: split.chars,
                     containerIndex: idx,
                     bounds: null
                 };

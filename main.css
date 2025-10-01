@@ -230,11 +230,11 @@ body {
     margin-left: -5%;
     transition: 1s;
     background-size: cover;
-    background-clip: text;
-    -webkit-background-clip: text;
+    /*background-clip: text;
+    -webkit-background-clip: text;*/
     background-position: center;
     background-repeat: no-repeat;
-    color: transparent;
+    color: red;
     transition: font-size 3s ease-in-out, letter-spacing 3s ease-in-out;
     white-space: nowrap;
     line-height: 1;
