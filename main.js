@@ -527,13 +527,14 @@ window.addEventListener("load", () => {
         console.error('Error initializing:', e.message);
         console.error('Stack:', e.stack);
     }
-});// Add after effect initialization
+    // Add after effect initialization
 if (effect.textContainers.length > 0) {
     effect.textContainers[0].characters.forEach((char, i) => {
         char.style.border = '1px solid red';
         char.style.background = 'rgba(255,0,0,0.1)';
     });
 }
+});
     // Start infinite scroll loop
 
     // repeat first three items by cloning them and appending them to the .grid
