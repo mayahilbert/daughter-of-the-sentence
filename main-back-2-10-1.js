@@ -111,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             elements.forEach((el, idx) => {
-                
                   const split = SplitText.create(el, {
                     type: "words, chars",
                     charsClass: "char",
