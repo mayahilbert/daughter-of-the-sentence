@@ -243,25 +243,9 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-/* iOS fixes */
-
-.split-text {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 .char {
-    display: 'inline-block';
-    position: 'relative';
-    will-change: 'transform';
-    backface-visibility: 'hidden';
-    perspective: 1000;
-    -webkit-font-smoothing: 'antialiased';
-    opacity: 1;
-        color: transparent;
-
+    color: transparent
 }
-
 .home-title-wrapper h2 {
     margin: 0;
 }
