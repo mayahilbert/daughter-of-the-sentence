@@ -350,14 +350,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     // Apply GSAP tween
-                    //gsap.to(char, {
-                    //    x: char._permanent.x,
-                    //    y: char._permanent.y,
-                    //    rotation: char._permanent.rotation,
-                    //    duration: cfg.gsapDuration,
-                    //    ease: cfg.gsapEasing,
-                    //    overwrite: "auto"
-                    //});
+                    gsap.to(char, {
+                        x: char._permanent.x,
+                        y: char._permanent.y,
+                        //rotation: char._permanent.rotation,
+                        //duration: cfg.gsapDuration,
+                        //ease: cfg.gsapEasing,
+                        //overwrite: "auto"
+                    });
                 });
             });
         }
