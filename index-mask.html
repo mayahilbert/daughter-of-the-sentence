@@ -9,41 +9,58 @@
   <link rel="stylesheet" href="https://indestructibletype.com/fonts/Jost.css" type="text/css" charset="utf-8" />
   <style>
     .background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background: url('http://bgfons.com/uploads/gold/gold_texture464.jpg');
-  background-size: cover;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      background: url('http://bgfons.com/uploads/gold/gold_texture464.jpg');
+      background-size: cover;
+      background-clip: text;
+      -webkit-background-clip: text;
+              padding: 30vh 0;
+    min-width: 100vw;
+    margin: -3vh 0;
+    margin-left: -5%;
+        background-size: cover;
+    /*background-clip: text;
+    -webkit-background-clip: text;*/
+    background-position: center;
+    background-repeat: no-repeat;
+    }
 
 
 
-.foreground1 {
-    font-size: 3em;
-  font-weight: bold;
-  text-align: center;
-  color: transparent;
-}
+    .foreground1 {
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center;
+      color: transparent;
+    }
 
-   .split-text > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background: url('http://bgfons.com/uploads/gold/gold_texture464.jpg');
-  background-size: cover;
-  background-clip: text;
-  -webkit-background-clip: text;
-  height:100%;
-}
+   button.split-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      background: url('http://bgfons.com/uploads/gold/gold_texture464.jpg');
+      background-size: cover;
+      background-clip: text;
+      -webkit-background-clip: text;
+              padding: 30vh 0;
+    min-width: 100vw;
+    margin: -3vh 0;
+    margin-left: -5%;
+        background-size: cover;
+    /*background-clip: text;
+    -webkit-background-clip: text;*/
+    background-position: center;
+    background-repeat: no-repeat;
+    }
 
 
-.char {
-  color: transparent;
-}
+    .char {
+      color: transparent;
+    }
   </style>
 </head>
 
@@ -77,34 +94,59 @@
         <div class="home-title-wrapper">
           <div class="background">
             <div class="bg">
-  <div class="foreground1">This is some text</div>
-    <div class="foreground1">T</div>
-      <div class="foreground1">h</div>
-  <div class="foreground1">e</div>
-  <div class="foreground2">This is some text</div>
-</div></div>
+              <div class="foreground1">This is some text</div>
+              <div class="foreground1">T</div>
+              <div class="foreground1">h</div>
+              <div class="foreground1">e</div>
+              <div class="foreground2">This is some text</div>
+            </div>
+          </div>
           <!--<img src="images/Cling_01.jpg" class="floating-img" style="z-index:-5;position: relative;max-width:20%;margin-bottom:-70vh">
           <img src="images/DoS_Still.jpg" class="floating-img" style="z-index:-5;position: relative;max-width:20%;margin-bottom:-40vh">-->
           <h2 class=""><button class="split-text minders-home-title" id="minders-open">Minders</button></h2>
-          </div>
-<div class="project-info"><p>2025, single channel video, 0:00</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim tortor in augue pellentesque, in mollis ante tristique. Aliquam tellus augue, commodo vel dui lobortis, tempus pellentesque magna. In luctus orci quam, eu congue metus rhoncus nec. Ut arcu orci, tristique efficitur sagittis nec, dapibus sit amet purus. Proin feugiat congue magna, nec dictum purus euismod quis. Ut eleifend a dolor a porttitor. Cras sit amet convallis arcu, ut maximus leo. Phasellus nec erat eu dolor placerat sodales in eu turpis. Quisque id ornare velit. Maecenas ullamcorper cursus fermentum. Praesent lorem metus, porta ac nulla ac, efficitur aliquam velit. Cras molestie, dolor sed vehicula accumsan, magna magna ultricies ligula, quis pellentesque urna mauris id nunc. </p>
+        </div>
+        <div class="project-info">
+          <p>2025, single channel video, 0:00</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim tortor in augue pellentesque, in
+            mollis ante tristique. Aliquam tellus augue, commodo vel dui lobortis, tempus pellentesque magna. In luctus
+            orci quam, eu congue metus rhoncus nec. Ut arcu orci, tristique efficitur sagittis nec, dapibus sit amet
+            purus. Proin feugiat congue magna, nec dictum purus euismod quis. Ut eleifend a dolor a porttitor. Cras sit
+            amet convallis arcu, ut maximus leo. Phasellus nec erat eu dolor placerat sodales in eu turpis. Quisque id
+            ornare velit. Maecenas ullamcorper cursus fermentum. Praesent lorem metus, porta ac nulla ac, efficitur
+            aliquam velit. Cras molestie, dolor sed vehicula accumsan, magna magna ultricies ligula, quis pellentesque
+            urna mauris id nunc. </p>
         </div>
       </div>
       <div class="grid__item">
         <div class="home-title-wrapper">
           <h2 class=""><button class="split-text usage-home-title" id="usage-open">Usage</button></h2>
         </div>
-        <div class="project-info"><p>2025, single channel video, 0:00</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim tortor in augue pellentesque, in mollis ante tristique. Aliquam tellus augue, commodo vel dui lobortis, tempus pellentesque magna. In luctus orci quam, eu congue metus rhoncus nec. Ut arcu orci, tristique efficitur sagittis nec, dapibus sit amet purus. Proin feugiat congue magna, nec dictum purus euismod quis. Ut eleifend a dolor a porttitor. Cras sit amet convallis arcu, ut maximus leo. Phasellus nec erat eu dolor placerat sodales in eu turpis. Quisque id ornare velit. Maecenas ullamcorper cursus fermentum. Praesent lorem metus, porta ac nulla ac, efficitur aliquam velit. Cras molestie, dolor sed vehicula accumsan, magna magna ultricies ligula, quis pellentesque urna mauris id nunc. </p>
+        <div class="project-info">
+          <p>2025, single channel video, 0:00</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim tortor in augue pellentesque, in
+            mollis ante tristique. Aliquam tellus augue, commodo vel dui lobortis, tempus pellentesque magna. In luctus
+            orci quam, eu congue metus rhoncus nec. Ut arcu orci, tristique efficitur sagittis nec, dapibus sit amet
+            purus. Proin feugiat congue magna, nec dictum purus euismod quis. Ut eleifend a dolor a porttitor. Cras sit
+            amet convallis arcu, ut maximus leo. Phasellus nec erat eu dolor placerat sodales in eu turpis. Quisque id
+            ornare velit. Maecenas ullamcorper cursus fermentum. Praesent lorem metus, porta ac nulla ac, efficitur
+            aliquam velit. Cras molestie, dolor sed vehicula accumsan, magna magna ultricies ligula, quis pellentesque
+            urna mauris id nunc. </p>
         </div>
       </div>
       <div class="grid__item">
         <div class="home-title-wrapper">
           <h2 class=""><button class="split-text cling-home-title" id="cling-open">Cling</button></h2>
         </div>
-        <div class="project-info"><p>2025, single channel video, 0:00</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim tortor in augue pellentesque, in mollis ante tristique. Aliquam tellus augue, commodo vel dui lobortis, tempus pellentesque magna. In luctus orci quam, eu congue metus rhoncus nec. Ut arcu orci, tristique efficitur sagittis nec, dapibus sit amet purus. Proin feugiat congue magna, nec dictum purus euismod quis. Ut eleifend a dolor a porttitor. Cras sit amet convallis arcu, ut maximus leo. Phasellus nec erat eu dolor placerat sodales in eu turpis. Quisque id ornare velit. Maecenas ullamcorper cursus fermentum. Praesent lorem metus, porta ac nulla ac, efficitur aliquam velit. Cras molestie, dolor sed vehicula accumsan, magna magna ultricies ligula, quis pellentesque urna mauris id nunc. </p>
+        <div class="project-info">
+          <p>2025, single channel video, 0:00</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim tortor in augue pellentesque, in
+            mollis ante tristique. Aliquam tellus augue, commodo vel dui lobortis, tempus pellentesque magna. In luctus
+            orci quam, eu congue metus rhoncus nec. Ut arcu orci, tristique efficitur sagittis nec, dapibus sit amet
+            purus. Proin feugiat congue magna, nec dictum purus euismod quis. Ut eleifend a dolor a porttitor. Cras sit
+            amet convallis arcu, ut maximus leo. Phasellus nec erat eu dolor placerat sodales in eu turpis. Quisque id
+            ornare velit. Maecenas ullamcorper cursus fermentum. Praesent lorem metus, porta ac nulla ac, efficitur
+            aliquam velit. Cras molestie, dolor sed vehicula accumsan, magna magna ultricies ligula, quis pellentesque
+            urna mauris id nunc. </p>
         </div>
       </div>
       <div class="grid__item">
@@ -116,8 +158,16 @@
           </h2>
 
         </div>
-        <div class="project-info"><p>2025, single channel video, 0:00</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim tortor in augue pellentesque, in mollis ante tristique. Aliquam tellus augue, commodo vel dui lobortis, tempus pellentesque magna. In luctus orci quam, eu congue metus rhoncus nec. Ut arcu orci, tristique efficitur sagittis nec, dapibus sit amet purus. Proin feugiat congue magna, nec dictum purus euismod quis. Ut eleifend a dolor a porttitor. Cras sit amet convallis arcu, ut maximus leo. Phasellus nec erat eu dolor placerat sodales in eu turpis. Quisque id ornare velit. Maecenas ullamcorper cursus fermentum. Praesent lorem metus, porta ac nulla ac, efficitur aliquam velit. Cras molestie, dolor sed vehicula accumsan, magna magna ultricies ligula, quis pellentesque urna mauris id nunc. </p>
+        <div class="project-info">
+          <p>2025, single channel video, 0:00</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim tortor in augue pellentesque, in
+            mollis ante tristique. Aliquam tellus augue, commodo vel dui lobortis, tempus pellentesque magna. In luctus
+            orci quam, eu congue metus rhoncus nec. Ut arcu orci, tristique efficitur sagittis nec, dapibus sit amet
+            purus. Proin feugiat congue magna, nec dictum purus euismod quis. Ut eleifend a dolor a porttitor. Cras sit
+            amet convallis arcu, ut maximus leo. Phasellus nec erat eu dolor placerat sodales in eu turpis. Quisque id
+            ornare velit. Maecenas ullamcorper cursus fermentum. Praesent lorem metus, porta ac nulla ac, efficitur
+            aliquam velit. Cras molestie, dolor sed vehicula accumsan, magna magna ultricies ligula, quis pellentesque
+            urna mauris id nunc. </p>
         </div>
       </div>
       <div class="grid__item">
@@ -134,8 +184,8 @@
             </div>
           </div>-->
 
-        </div>                        
-          <img src="images/gnaw/Sullivan_Blueprint1.jpg" class="gnaw-img-large" id="gnaw-main">
+        </div>
+        <img src="images/gnaw/Sullivan_Blueprint1.jpg" class="gnaw-img-large" id="gnaw-main">
 
         <!--</h2>
                           <img src="images/gnaw/Sullivan_Blueprint1.jpg" class="gnaw-img floating-img" >
@@ -180,7 +230,7 @@
         frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </section>
   </dialog>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
@@ -195,23 +245,23 @@
   <script src="page-flip.browser.js"></script>
 
   <script>
- 
-  if (window.innerWidth < 768) {
-     window.scrollTo({
-      top:400
-    });
-  } else {
-        window.scrollTo({
-      //top: 550
 
-      top:480
-    });
-  }
-  
+    if (window.innerWidth < 768) {
+      window.scrollTo({
+        top: 400
+      });
+    } else {
+      window.scrollTo({
+        //top: 550
+
+        top: 480
+      });
+    }
+
 
     document.addEventListener("DOMContentLoaded", (event) => {
       gsap.registerPlugin(SplitText)
-      
+
       //var p = new Peel('#top-left', {
       //  corner: Peel.Corners.TOP_LEFT
       //});

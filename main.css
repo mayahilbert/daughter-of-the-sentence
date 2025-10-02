@@ -238,13 +238,13 @@ body {
     margin: -3vh 0;
     margin-left: -5%;
         background-size: cover;
-    background-clip: text;
-    -webkit-background-clip: text;
-    background-position: center;
+    /*background-clip: text;
+    -webkit-background-clip: text;*/
+    /*background-position: center;
     background-repeat: no-repeat;*/
 }
 .char {
-    /*color: transparent*/
+    color: transparent
 }
 .home-title-wrapper h2 {
     margin: 0;
@@ -280,7 +280,7 @@ body {
 
 }
 
-.minders-home-title > div{
+.minders-home-title{
     background-image: url(images/Minders_01.jpg);
 
 }
