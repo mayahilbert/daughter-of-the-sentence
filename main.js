@@ -1,7 +1,7 @@
 (function () {
-        const consoleDiv = document.createElement('div');
-        consoleDiv.id = 'mobile-console';
-        consoleDiv.style.cssText = `
+    const consoleDiv = document.createElement('div');
+    consoleDiv.id = 'mobile-console';
+    consoleDiv.style.cssText = `
         position: fixed;
         bottom: 0;
         left: 0;
@@ -16,41 +16,40 @@
         z-index: 999999;
         border-top: 2px solid #0f0;
     `;
-        document.body.appendChild(consoleDiv);
+    document.body.appendChild(consoleDiv);
 
-        const oldLog = console.log;
-        const oldError = console.error;
-        const oldWarn = console.warn;
+    const oldLog = console.log;
+    const oldError = console.error;
+    const oldWarn = console.warn;
 
-        function addLog(msg, type = 'log') {
-            const color = type === 'error' ? '#f00' : type === 'warn' ? '#ff0' : '#0f0';
-            const line = document.createElement('div');
-            line.style.color = color;
-            line.textContent = `[${type.toUpperCase()}] ${msg}`;
-            consoleDiv.appendChild(line);
-            consoleDiv.scrollTop = consoleDiv.scrollHeight;
-        }
+    function addLog(msg, type = 'log') {
+        const color = type === 'error' ? '#f00' : type === 'warn' ? '#ff0' : '#0f0';
+        const line = document.createElement('div');
+        line.style.color = color;
+        line.textContent = `[${type.toUpperCase()}] ${msg}`;
+        consoleDiv.appendChild(line);
+        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    }
 
-        console.log = function (...args) {
-            oldLog.apply(console, args);
-            addLog(args.join(' '), 'log');
-        };
-        console.error = function (...args) {
-            oldError.apply(console, args);
-            addLog(args.join(' '), 'error');
-        };
-        console.warn = function (...args) {
-            oldWarn.apply(console, args);
-            addLog(args.join(' '), 'warn');
-        };
+    console.log = function (...args) {
+        oldLog.apply(console, args);
+        addLog(args.join(' '), 'log');
+    };
+    console.error = function (...args) {
+        oldError.apply(console, args);
+        addLog(args.join(' '), 'error');
+    };
+    console.warn = function (...args) {
+        oldWarn.apply(console, args);
+        addLog(args.join(' '), 'warn');
+    };
 
-        window.onerror = function (msg, url, line, col, error) {
-            addLog(`ERROR: ${msg} at ${line}:${col}`, 'error');
-        };
-    })();
+    window.onerror = function (msg, url, line, col, error) {
+        addLog(`ERROR: ${msg} at ${line}:${col}`, 'error');
+    };
+})();
 document.addEventListener("DOMContentLoaded", () => {
 
-    document.addEventListener("DOMContentLoaded", () => {
 
     gsap.registerPlugin(SplitText);
     const lenis = new Lenis({
@@ -305,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.addEventListener("resize", () => {
                 this.textContainers.forEach(container => {
                     this.updateContainerBounds(container);
-                    
+
                     // Update character origins on resize
                     container.characters.forEach(char => {
                         const rect = char.getBoundingClientRect();
@@ -469,7 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 charsClass: "char2",
                 reduceWhiteSpace: false
             });
-            
+
             const effect = new ScatterCursorEffect(
                 ".split-text",                    // Text selectors
                 ".floating",                      // Image selectors
@@ -490,7 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             );
-            
+
             console.log('Effect initialized');
             console.log('Text containers:', effect.textContainers.length);
             console.log('Image elements:', effect.imageElements.length);
@@ -521,7 +520,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Stack:', e.stack);
         }
     });
-});
     // End scattered letters effect
 
     // Start infinite scroll loop
