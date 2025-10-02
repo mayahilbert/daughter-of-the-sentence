@@ -1,61 +1,12 @@
-(function () {
-    const consoleDiv = document.createElement('div');
-    consoleDiv.id = 'mobile-console';
-    consoleDiv.style.cssText = `
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        max-height: 200px;
-        overflow-y: auto;
-        background: rgba(0,0,0,0.9);
-        color: #0f0;
-        font-family: monospace;
-        font-size: 10px;
-        padding: 10px;
-        z-index: 999999;
-        border-top: 2px solid #0f0;
-    `;
-    document.body.appendChild(consoleDiv);
 
-    const oldLog = console.log;
-    const oldError = console.error;
-    const oldWarn = console.warn;
-
-    function addLog(msg, type = 'log') {
-        const color = type === 'error' ? '#f00' : type === 'warn' ? '#ff0' : '#0f0';
-        const line = document.createElement('div');
-        line.style.color = color;
-        line.textContent = `[${type.toUpperCase()}] ${msg}`;
-        consoleDiv.appendChild(line);
-        consoleDiv.scrollTop = consoleDiv.scrollHeight;
-    }
-
-    console.log = function (...args) {
-        oldLog.apply(console, args);
-        addLog(args.join(' '), 'log');
-    };
-    console.error = function (...args) {
-        oldError.apply(console, args);
-        addLog(args.join(' '), 'error');
-    };
-    console.warn = function (...args) {
-        oldWarn.apply(console, args);
-        addLog(args.join(' '), 'warn');
-    };
-
-    window.onerror = function (msg, url, line, col, error) {
-        addLog(`ERROR: ${msg} at ${line}:${col}`, 'error');
-    };
-})();
 document.addEventListener("DOMContentLoaded", () => {
-
 
     gsap.registerPlugin(SplitText);
     const lenis = new Lenis({
         infinite: true,
         syncTouch: true
     });
+    // Add before your ScatterCursorEffect initialization
 
     class ScatterCursorEffect {
         constructor(cssSelectors, imageSelectors = [], options = {}) {
@@ -111,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             elements.forEach((el, idx) => {
+
                 const split = SplitText.create(el, {
                     type: "words, chars",
                     charsClass: "char",
@@ -125,18 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
                 container.characters.forEach(char => {
-                    // iOS/Safari fixes for text rendering
-                    gsap.set(char, {
-                        display: 'inline-block',
-                        position: 'relative',
-                        willChange: 'transform',
-                        backfaceVisibility: 'hidden',
-                        perspective: 1000,
-                        WebkitFontSmoothing: 'antialiased',
-                        MozOsxFontSmoothing: 'grayscale',
-                        transformOrigin: 'center center'
-                    });
-
                     const rect = char.getBoundingClientRect();
                     char._origin = {
                         x: rect.left + window.pageXOffset + rect.width / 2,
@@ -237,12 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         bindEvents() {
-            document.querySelectorAll(".home-title-wrapper").forEach(homeTitle => {
-                homeTitle.addEventListener("click", e => {
-                    console.log("click large")
-                    homeTitle.classList.toggle('expanded');
-                })
-            });
 
             document.addEventListener("mousemove", e => {
                 this.mouse.x = e.clientX + window.pageXOffset;
@@ -302,20 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             window.addEventListener("resize", () => {
-                this.textContainers.forEach(container => {
-                    this.updateContainerBounds(container);
-
-                    // Update character origins on resize
-                    container.characters.forEach(char => {
-                        const rect = char.getBoundingClientRect();
-                        char._origin = {
-                            x: rect.left + window.pageXOffset + rect.width / 2,
-                            y: rect.top + window.pageYOffset + rect.height / 2
-                        };
-                        char._width = rect.width;
-                        char._height = rect.height;
-                    });
-                });
+                this.textContainers.forEach(container => this.updateContainerBounds(container));
 
                 // Update image origins on resize
                 this.imageElements.forEach(img => {
@@ -468,10 +389,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 charsClass: "char2",
                 reduceWhiteSpace: false
             });
-
             const effect = new ScatterCursorEffect(
                 ".split-text",                    // Text selectors
-                ".floating",                      // Image selectors
+                ".floating",  // Image selectors
                 {
                     // Global config
                     influenceRadius: 300,
@@ -489,7 +409,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             );
-
             console.log('Effect initialized');
             console.log('Text containers:', effect.textContainers.length);
             console.log('Image elements:', effect.imageElements.length);
@@ -505,13 +424,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
             }
 
-            // Visual debug - add red border to characters
-            if (effect.textContainers.length > 0) {
-                effect.textContainers[0].characters.forEach((char, i) => {
-                    char.style.border = '1px solid red';
-                });
-            }
-
             // Make effect available globally for manual testing
             window.debugEffect = effect;
 
@@ -519,13 +431,15 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Error initializing:', e.message);
             console.error('Stack:', e.stack);
         }
+
+
     });
     // End scattered letters effect
 
     // Start infinite scroll loop
 
     // repeat first three items by cloning them and appending them to the .grid
-    const repeatItems = (parentEl, total = 5) => {
+    const repeatItems = (parentEl, total = 0) => {
         const items = [...parentEl.children];
         for (let i = 0; i <= total - 1; ++i) {
             var cln = items[i].cloneNode(true);
@@ -558,14 +472,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const dialogs = document.querySelectorAll("dialog");
 
-    function openDialog(dialog) {
+    function openDialog(dialog, theme) {
         console.log("open dialog")
-        document.querySelector("#homepage").classList.add('overlay-open');
+        if (theme == "light") {
+            document.querySelector("#homepage").classList.add('overlay-open-light');
+
+        } else {
+            document.querySelector("#homepage").classList.add('overlay-open');
+
+        }
         lenis.stop();
-        setTimeout(function () {
-            dialog.showModal();
-            history.pushState({ dialogId: dialog.id }, ""); // store which dialog is open
-        }, 1000);
+        //setTimeout(function () {
+        dialog.showModal();
+        history.pushState({ dialogId: dialog.id }, ""); // store which dialog is open
+        //}, 1000);
     }
 
     function closeDialog(dialog) {
@@ -595,7 +515,14 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("clicked dos")
         openDialog(document.getElementById("dos-overlay"));
     });
-
+    let gnawImgs = document.querySelectorAll(".floating-img");
+    gnawImgs.forEach((gnawImg) => {
+        gnawImg.addEventListener("click", () => {
+            document.getElementById("gnaw-main").setAttribute('src', gnawImg.getAttribute('src'));
+            console.log("clicked gnaw")
+            openDialog(document.getElementById("gnaw-overlay"), "light");
+        });
+    });
     // Close buttons
     let closeBtns = document.querySelectorAll(".close-btn")
 
@@ -632,23 +559,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create images and scatter them
     const gnawContainer = document.getElementById('gnaw-container');
-    for (let i = 0; i < imageUrls.length; i++) {
-        const imgDiv = document.createElement('div');
-        imgDiv.className = 'floating';
-        const img = document.createElement('img');
-        img.className = 'floating-img';
+    //for (let i = 0; i < imageUrls.length; i++) {
+    //    const imgDiv = document.createElement('div');
+    //    imgDiv.className = 'floating';
+    //    const img = document.createElement('img');
+    //    img.className = 'floating-img';
 
-        img.src = imageUrls[i % imageUrls.length];
-        imgDiv.appendChild(img);
-        gnawContainer.appendChild(imgDiv);
+    //    img.src = imageUrls[i % imageUrls.length];
+    //    imgDiv.appendChild(img);
+    //    gnawContainer.appendChild(imgDiv);
 
-        // Random position
-        imgDiv.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
-        imgDiv.style.top = `${Math.random() * (gnawContainer.getBoundingClientRect().height)}px`;
-        img.addEventListener("click", () => {
-            document.getElementById("gnaw-main").setAttribute('src', img.getAttribute('src'));
-        })
-    }
+    //    // Random position
+    //    imgDiv.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
+    //    imgDiv.style.top = `${Math.random() * (gnawContainer.getBoundingClientRect().height)}px`;
+        
+    //}
+    
 
 });
 
