@@ -73,22 +73,26 @@
 .split-text div  {
             position:unset !important;
   }
-  @supports (background-clip:text) or (-webkit-background-clip:text) {
     .char {
-      mix-blend-mode: overlay;
-           /*color: white;
+    mix-blend-mode: lighten;
+  }
+  /*.char::before {
+    mix-blend-mode: multiply;
+  }*/
+    @supports (background-clip:text) or (-webkit-background-clip:text) {
+
+}           /*color: white;
 -webkit-text-fill-color: white; */
-    }
+    
     .split-text {
- 
+     mix-blend-mode: multiply;
+
 /*background: inherit;*/
       /*background-clip: text;
       -webkit-background-clip: text; */
       backface-visibility: hidden; /* can stabilize */  transform: translateZ(0);   }
-    }
-    .usage-home-title .char {
-      color: red;
-    }
+
+
   </style>
 </head>
 
