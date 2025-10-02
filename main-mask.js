@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
 
-                //this.updateLetters();
+                this.updateLetters();
                 this.updateImages();
             });
 
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 // Trigger displacement calc with updated mouse + origins
-                this.updateLetters();
+                //this.updateLetters();
                 this.updateImages();
             });
 
