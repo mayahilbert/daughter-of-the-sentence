@@ -473,7 +473,7 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const splittest = SplitText.create(".background", {
                     type: "words, chars",
-                    charsClass: "char",
+                    charsClass: "char2",
                     reduceWhiteSpace: false
                 });
                 const effect = new ScatterCursorEffect(
