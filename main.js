@@ -472,7 +472,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             try {
                 const effect = new ScatterCursorEffect(
-                    ".split-text, .background",                    // Text selectors
+                    ".split-text",                    // Text selectors
                     ".floating",  // Image selectors
                     {
                         // Global config
