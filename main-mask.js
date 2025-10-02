@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             this.init(cssSelectors);
             this.initImages(imageSelectors);
-            //this.bindEvents();
+            this.bindEvents();
         }
 
         // Initialize text elements and split into chars
@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
 
-                this.updateLetters();
+                //this.updateLetters();
                 this.updateImages();
             });
 
