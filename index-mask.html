@@ -75,14 +75,15 @@
   }
   @supports (background-clip:text) or (-webkit-background-clip:text) {
     .char {
-           color: transparent;
--webkit-text-fill-color: transparent; 
+      mix-blend-mode: overlay;
+           /*color: white;
+-webkit-text-fill-color: white; */
     }
     .split-text {
  
 /*background: inherit;*/
-      background-clip: text;
-      -webkit-background-clip: text; 
+      /*background-clip: text;
+      -webkit-background-clip: text; */
       backface-visibility: hidden; /* can stabilize */  transform: translateZ(0);   }
     }
     .usage-home-title .char {
