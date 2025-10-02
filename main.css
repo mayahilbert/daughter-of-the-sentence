@@ -223,17 +223,17 @@ body {
 }
 
 .split-text{
-    text-align: center;
+    /*text-align: center;
     min-width: 100vw;
 
     transition: 1s;
     transition: font-size 3s ease-in-out, letter-spacing 3s ease-in-out;
     white-space: nowrap;
     line-height: 1;
-    cursor: pointer;
+    cursor: pointer;*/
 }
 .split-text > div{
-        padding: 30vh 0;
+        /*padding: 30vh 0;
     min-width: 100vw;
     margin: -3vh 0;
     margin-left: -5%;
@@ -241,10 +241,10 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
 .char {
-    color: transparent
+    /*color: transparent*/
 }
 .home-title-wrapper h2 {
     margin: 0;
