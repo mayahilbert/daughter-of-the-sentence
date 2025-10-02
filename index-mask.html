@@ -62,37 +62,27 @@
     background-position: center;
     background-repeat: no-repeat;
 
+    }
+    .split-text > div{
+      color: transparent;
 
     }
-    
-/*.minders-home-title{
-    background-image: none;
-
-}*/
-
-.split-text div  {
-            position:unset !important;
-  }
-    .char {
-    mix-blend-mode: lighten;
-  }
-  /*.char::before {
-    mix-blend-mode: multiply;
-  }*/
-    @supports (background-clip:text) or (-webkit-background-clip:text) {
-
-}           /*color: white;
--webkit-text-fill-color: white; */
-    
     .split-text {
-     mix-blend-mode: multiply;
-
-/*background: inherit;*/
-      /*background-clip: text;
-      -webkit-background-clip: text; */
-      backface-visibility: hidden; /* can stabilize */  transform: translateZ(0);   }
-
-
+      background: none;
+    }
+.char {
+   display: inline-block;
+  background-image: url('images/Cling_01.jpg');
+background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  will-change: transform;
+display: inline-block;           /* each char isolated */
+    background-clip: text;           /* clip background to text */
+    -webkit-background-clip: text;   /* for Chrome/Safari */
+    color: transparent;              /* hides the original text color */
+}
+/*.minders-home-title .char:nth-of-type(1) { background-position: 1em 0}*/
   </style>
 </head>
 
@@ -124,13 +114,6 @@
       <div class="grid__item">
 
         <div class="home-title-wrapper">
-          <div class="background">
-            <div class="bg">
-              <div class="foreground1">T</div>
-              <div class="foreground2">h</div>
-              <div class="foreground1">e</div>
-            </div>
-          </div>
           <!--<img src="images/Cling_01.jpg" class="floating-img" style="z-index:-5;position: relative;max-width:20%;margin-bottom:-70vh">
           <img src="images/DoS_Still.jpg" class="floating-img" style="z-index:-5;position: relative;max-width:20%;margin-bottom:-40vh">-->
           <h2 class=""><button class="split-text minders-home-title" id="minders-open">Minders</button></h2>
@@ -291,6 +274,7 @@
 
     document.addEventListener("DOMContentLoaded", (event) => {
       gsap.registerPlugin(SplitText)
+// Function to slice background across letters
 
       //var p = new Peel('#top-left', {
       //  corner: Peel.Corners.TOP_LEFT

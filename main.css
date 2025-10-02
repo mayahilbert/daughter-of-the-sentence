@@ -131,8 +131,19 @@ textarea:not([rows]) {
     transition: 0.8s;
 }
 
+/*#homepage body {
+        background-image: url(images/gnaw/Sullivan_Blueprint1.jpg);
+    background-attachment: fixed;
+    background-size:50%;
+    background-repeat: no-repeat;
+}*/
 #homepage.overlay-open {
     background: black;
+    overflow: hidden;
+}
+
+#homepage.overlay-open-light {
+    background: white;
     overflow: hidden;
 }
 
@@ -185,10 +196,12 @@ h1 {
     line-height: 1.3em;
 }
 
-button.split-text {
+.split-text {
     font-size: clamp(15px, calc(3rem + 6vw), 13vw);
     letter-spacing: 0.03em;
-
+    line-height: 1.1;
+    z-index: 9999;
+    pointer-events: none;
 }
 
 body {
@@ -200,32 +213,76 @@ body {
     flex-direction: column;
     align-items: center;
     margin-top: -10vh;
-
 }
 
 .project-info {
-
-    width: clamp(30ch, 40%, 60ch);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     margin: 2em;
-    margin-top: -10%;
-    margin-right: -50%;
+    margin-top: -40vh;
+    margin-right: 5%;
     font-size: 1rem;
+    flex-wrap: wrap;
+    gap: 3em;
+    position: relative;
 }
 
-.project-info p:first-of-type {
+.project-text {
+    width: clamp(40ch, 40%, 60ch);
+
+}
+
+.project-text p:first-of-type {
     font-weight: 600;
 }
 
 @media screen and (max-width: 768px) {
     .project-info {
-        margin-right: -5%;
+        margin-right: 5%;
     }
 }
 
-.split-text{
+
+.work-thumb {
+    width: clamp(300px, 30vw, 600px);
+    max-width: 100%;
+    height: auto;
+    align-self: flex-start;
+    margin: 0;
+    opacity: 0.8;
+    transition: opacity 0.5s;
+    z-index: -9999;
+}
+
+.work-thumb:hover {
+    opacity: 1;
+}
+
+.view-note {
+    position: relative;
+}
+
+.view-note p {
+    width: 100%;
+    margin: 1em;
+    margin-top: -2em;
+    position: absolute;
+    font-family: "Neutral Face Bold", Arial, Helvetica, sans-serif;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+}
+
+.usage-note p {
+    mix-blend-mode: difference;
+}
+
+.split-text {
     text-align: center;
     min-width: 100vw;
-    padding: 30vh 0;
+    padding: 10vh 0 50vh 0;
     margin: -3vh 0;
     margin-left: -5%;
     transition: 1s;
@@ -242,8 +299,9 @@ body {
 }
 
 .char {
-    color: black;
+    color: black
 }
+
 .home-title-wrapper h2 {
     margin: 0;
 }
@@ -268,19 +326,21 @@ body {
 
 .minders-home-title {
     margin-top: 0;
-    padding: 35vh 0 30vh 0;
+    padding-top: 30vh;
     z-index: -1;
 }
 
 .dos-home-title {
     white-space: pre-line;
+}
+
+/*.dos-home-title {
     background-image: url(images/DoS_Still.jpg);
 
 }
 
 .minders-home-title{
     background-image: url(images/Minders_01.jpg);
-
 }
 
 .usage-home-title {
@@ -291,7 +351,7 @@ body {
 .cling-home-title {
     background-image: url(images/Cling_01.jpg);
 
-}
+}*/
 
 .curatorial-page {
     background-color: black;
@@ -377,6 +437,7 @@ nav a:hover {
     position: fixed;
     bottom: 0;
     right: 0;
+    z-index: 99999;
 }
 
 .scroll-line {
@@ -444,6 +505,15 @@ nav a:hover {
     display: grid;
 }
 
+.blueprint-container {
+    z-index: 99;
+    height: 50vh;
+
+}
+
+.blueprint-container.blueprint-container-no-height {
+    height: auto;
+}
 
 .video-container {
     display: flex;
@@ -505,6 +575,16 @@ dialog:not([open]) {
 .close-btn {
     color: #dfd2a6;
     padding: 1em;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+}
+
+@media screen and (max-width: 768px) {
+    .close-btn {
+        right: 1em;
+        left:auto;
+    }
 }
 
 /* Peel */
@@ -521,9 +601,14 @@ dialog:not([open]) {
 }
 
 .gnaw-wrapper {
-    width: 100%;
-    height: 100vh;
-    max-width: 80vw
+    /*width: 100%;
+    height: 95vh;
+    max-height: 95vh;
+    max-width: 100%*/
+}
+
+.gnaw-img-large {
+    width: auto;
 }
 
 .gnaw-container {
@@ -537,7 +622,7 @@ dialog:not([open]) {
     width: 100vw;
     position: relative;
     pointer-events: all;
-    margin: 16vh 0 13vh 0;
+    /*margin: 16vh 0 13vh 0;*/
 }
 
 .floating {
@@ -552,9 +637,21 @@ dialog:not([open]) {
 }
 
 .gnaw-img-large {
-    margin: 0 0 30vh 0;
+    margin: 0 auto;
+    align-self: center;
 }
 
+#gnaw-overlay {
+    background-color: white;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border: none
+}
+
+#gnaw-overlay .close-btn {
+    color: black;
+}
 
 
 

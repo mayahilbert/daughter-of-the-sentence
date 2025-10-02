@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
                 container.characters.forEach(char => {
+                    
                     const rect = char.getBoundingClientRect();
                     char._origin = {
                         x: rect.left + window.pageXOffset + rect.width / 2,
@@ -134,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     char._width = rect.width;
                     char._height = rect.height;
                     char._permanent = { x: 0, y: 0, rotation: 0 };
+                    
                 });
 
                 this.updateContainerBounds(container);
@@ -276,6 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 });
 
+
                 // Update image origins
                 this.imageElements.forEach(img => {
                     const rect = img.getBoundingClientRect();
@@ -312,6 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const bounds = container.bounds;
 
                 container.characters.forEach(char => {
+
                     if (!char._origin) { return; }
 
                     // Compute influence
