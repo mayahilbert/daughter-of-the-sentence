@@ -32,7 +32,7 @@
       font-weight: bold;
       color: transparent;}
       .foreground2 {
-        border: 1px solid green;
+        border: 1px solid red;
 
       }
       .foreground2 div {
@@ -79,7 +79,8 @@
 -webkit-text-fill-color: transparent; 
 background: inherit;
       background-clip: text;
-      -webkit-background-clip: text;   }
+      -webkit-background-clip: text; 
+      backface-visibility: hidden; /* can stabilize */  transform: translateZ(0);   }
     }
     .usage-home-title .char {
       color: red;
@@ -258,7 +259,7 @@ background: inherit;
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
   <!--<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>-->
   <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-  <script src="main-mask.js?v=1.5"></script>
+  <script src="main-mask.js?v=1.6"></script>
 
 
   <script src="peel-js-master/src/peel.js"></script>
