@@ -471,8 +471,13 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log('Page loaded, initializing effect...');
 
             try {
+                const splittest = SplitText.create(".background", {
+                    type: "words, chars",
+                    charsClass: "char",
+                    reduceWhiteSpace: false
+                });
                 const effect = new ScatterCursorEffect(
-                    ".split-text, .background",                    // Text selectors
+                    ".split-text",                    // Text selectors
                     ".floating",  // Image selectors
                     {
                         // Global config
