@@ -32,7 +32,7 @@
       font-weight: bold;
       color: transparent;}
       .foreground2 {
-        border: 1px solid green;
+        border: 1px solid red;
 
       }
       .foreground2 div {
@@ -68,12 +68,14 @@
 .split-text div  {
             position:unset !important;
   }
+  @supports (background-clip:text) or (-webkit-background-clip:text) {
     .char {
       color: transparent;
 -webkit-text-fill-color: transparent; 
 background: url('http://bgfons.com/uploads/gold/gold_texture464.jpg');
       background-clip: text;
       -webkit-background-clip: text;   }
+    }
     .usage-home-title .char {
       color: red;
     }
