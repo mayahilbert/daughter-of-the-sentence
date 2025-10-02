@@ -422,39 +422,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        createEntranceAnimation() {
-            const tl = gsap.timeline();
-
-            // Animate text characters in
-            if (this.textContainers.length > 0) {
-                tl.to(this.textContainers[0].characters, {
-                    opacity: 1,
-                    duration: 0.8,
-                    stagger: {
-                        each: 0.2,
-                        from: "random"
-                    },
-                    delay: 0.2
-                });
-            }
-
-            // Animate images in
-            if (this.imageElements.length > 0) {
-                tl.to(this.imageElements, {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 1,
-                    stagger: {
-                        each: 0.15,
-                        from: "random"
-                    },
-                    ease: "back.out(1.7)"
-                }, "-=0.4"); // Start 0.4s before text animation ends
-            }
-
-            return tl;
-        }
-
         // Method to add new images dynamically
         addImages(imageSelectors) {
             this.initImages(imageSelectors);
