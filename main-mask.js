@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
 
-                this.updateLetters();
+                //this.updateLetters();
                 this.updateImages();
             });
 
