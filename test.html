@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GSAP Text Repel</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<style>
+.text-wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.text-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.5);
+  position: fixed;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+
+  </style>
+</head>
+<body>
+
+<div class="text-wrapper">
+  <svg class="text-svg" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="imgPattern" patternUnits="objectBoundingBox" width="1" height="1">
+        <image href="images/Minders_01.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
+      </pattern>
+    </defs>
+    <text id="split-text"
+          x="50%" y="50%" text-anchor="middle" dy=".35em"
+          font-size="12vw" font-weight="bold"
+          fill="url(#imgPattern)">
+      Knockout
+    </text>
+  </svg>
+</div>
+
+
+
+<div class="cursor"></div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script>
+  class ScatterCursorEffectSVG {
+  constructor(svgTextSelector, options = {}) {
+    this.mouse = { x: 0, y: 0 };
+    this.textElement = document.querySelector(svgTextSelector);
+    this.chars = [];
+    this.cursor = document.querySelector('.cursor');
+
+    this.config = {
+      influenceRadius: 300,
+      maxDisplacement: 200,
+      maxRotation: 50,
+      gsapDuration: 2,
+      gsapEasing: "power2.out",
+      ...options
+    };
+
+    this.splitTextToTspans();
+    this.bindEvents();
+  }
+
+  // Split the SVG text into tspans for each char
+  splitTextToTspans() {
+    const textContent = this.textElement.textContent;
+    this.textElement.textContent = "";
+
+    let x = 0;
+    const fontSize = parseFloat(this.textElement.getAttribute("font-size")) || 100;
+
+    [...textContent].forEach((char, i) => {
+      const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+      tspan.textContent = char;
+      tspan.setAttribute("x", 100 + x); // starting x, adjust as needed
+      tspan.setAttribute("y", "100");   // baseline y
+      this.textElement.appendChild(tspan);
+
+      // Get char bbox
+      const bbox = tspan.getBBox();
+      const origin = {
+        x: bbox.x + bbox.width / 2,
+        y: bbox.y + bbox.height / 2
+      };
+
+      tspan._origin = origin;
+      tspan._permanent = { x: 0, y: 0, rotation: 0 };
+      tspan._width = bbox.width;
+      tspan._height = bbox.height;
+
+      this.chars.push(tspan);
+
+      x += bbox.width; // increment for next char
+    });
+  }
+
+  bindEvents() {
+    document.addEventListener("mousemove", e => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
+
+      if (this.cursor) {
+        gsap.to(this.cursor, {
+          x: e.clientX - 10,
+          y: e.clientY - 10,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      }
+
+      this.updateLetters();
+    });
+  }
+
+  updateLetters() {
+    this.chars.forEach(char => {
+      if (!char._origin) return;
+
+      const dx = this.mouse.x - char._origin.x;
+      const dy = this.mouse.y - char._origin.y;
+      const dist = Math.hypot(dx, dy);
+      let influence = Math.max(0, 1 - dist / this.config.influenceRadius);
+
+      if (influence < 0.02) influence = 0;
+
+      const eased = 1 - Math.pow(1 - influence, 6);
+
+      const tx = Math.cos(Math.atan2(dy, dx) + Math.PI) * eased * this.config.maxDisplacement;
+      const ty = Math.sin(Math.atan2(dy, dx) + Math.PI) * eased * this.config.maxDisplacement;
+
+      char._permanent.x = tx;
+      char._permanent.y = ty;
+      char._permanent.rotation = Math.sin(Math.atan2(dy, dx)) * eased * this.config.maxRotation;
+
+      gsap.to(char, {
+        attr: {
+          dx: char._permanent.x,
+          dy: char._permanent.y
+        },
+        rotation: char._permanent.rotation,
+        duration: this.config.gsapDuration,
+        ease: this.config.gsapEasing,
+        overwrite: "auto"
+      });
+    });
+  }
+}
+
+window.addEventListener("load", () => {
+  const effect = new ScatterCursorEffectSVG("#split-text", {
+    influenceRadius: 250,
+    maxDisplacement: 120,
+    maxRotation: 40
+  });
+  window.debugEffect = effect;
+});
+
+</script>
+<script> 
+</script>
+</body>
+</html>
