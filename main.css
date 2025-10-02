@@ -242,7 +242,7 @@ body {
 }
 
 .char {
-    color: transparent
+    color: black;
 }
 .home-title-wrapper h2 {
     margin: 0;
