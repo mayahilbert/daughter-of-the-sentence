@@ -223,26 +223,24 @@ body {
 }
 
 .split-text{
-    /*text-align: center;
+    text-align: center;
     min-width: 100vw;
-
+    padding: 30vh 0;
+    margin: -3vh 0;
+    margin-left: -5%;
     transition: 1s;
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: transparent;
     transition: font-size 3s ease-in-out, letter-spacing 3s ease-in-out;
     white-space: nowrap;
     line-height: 1;
-    cursor: pointer;*/
+    cursor: pointer;
 }
-.split-text > div{
-        /*padding: 30vh 0;
-    min-width: 100vw;
-    margin: -3vh 0;
-    margin-left: -5%;
-        background-size: cover;
-    /*background-clip: text;
-    -webkit-background-clip: text;*/
-    /*background-position: center;
-    background-repeat: no-repeat;*/
-}
+
 .char {
     color: transparent
 }
