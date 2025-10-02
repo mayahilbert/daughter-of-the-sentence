@@ -509,7 +509,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (effect.textContainers.length > 0) {
                 effect.textContainers[0].characters.forEach((char, i) => {
                     char.style.border = '1px solid red';
-                    char.style.background = 'rgba(255,0,0,0.1)';
                 });
             }
 

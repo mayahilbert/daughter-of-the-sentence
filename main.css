@@ -232,10 +232,8 @@ body {
     background-size: cover;
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-box-decoration-break: clone;
     background-position: center;
     background-repeat: no-repeat;
-    color: transparent;
     transition: font-size 3s ease-in-out, letter-spacing 3s ease-in-out;
     white-space: nowrap;
     line-height: 1;
@@ -257,6 +255,8 @@ body {
     perspective: 1000;
     -webkit-font-smoothing: 'antialiased';
     opacity: 1;
+        color: transparent;
+
 }
 
 .home-title-wrapper h2 {
