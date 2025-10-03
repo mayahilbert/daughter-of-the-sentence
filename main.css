@@ -617,7 +617,9 @@ dialog[open] {
 dialog::backdrop {
     background-color: black;
 }
-
+dialog#gnaw-overlay {
+    animation: none;
+}
 dialog#gnaw-overlay::backdrop {
     background-color: white;
 }
