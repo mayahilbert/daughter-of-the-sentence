@@ -598,6 +598,7 @@ nav a:hover {
     justify-content: center;
     cursor: pointer;
     max-height: 80vh;
+    height: auto;
     width: 100%;
     align-self: center
 }
@@ -630,6 +631,8 @@ dialog[open] {
     height: 100%;
     animation: myFadeIn 0.8s ease normal;
     display: flex;
+    /*margin: 0 auto;
+  align-self: center;*/
 }
 
 dialog::backdrop {
@@ -640,8 +643,16 @@ dialog#gnaw-overlay {
     animation: none;
 }
 
+dialog#gnaw-overlay[open] {
+    height: fit-content;
+    width: fit-content;
+    background: transparent;
+    align-self: center;
+    margin: 0 auto;
+}
+
 dialog#gnaw-overlay::backdrop {
-    background-color: white;
+    background-color: transparent;
 }
 
 @keyframes myFadeIn {
@@ -736,11 +747,10 @@ dialog:not([open]) {
 
 .gnaw-img-large {
     margin: 0 auto;
-    align-self: center;
+    /*align-self: center;*/
 }
 
 #gnaw-overlay {
-    background-color: white;
     display: flex;
     margin: 0;
     padding: 0;

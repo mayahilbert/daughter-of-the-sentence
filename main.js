@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(SplitText);
     const lenis = new Lenis({
         infinite: true,
-        //syncTouch: true
+        syncTouch: true
     });
     // Add before your ScatterCursorEffect initialization
 
@@ -533,16 +533,11 @@ document.addEventListener("DOMContentLoaded", () => {
             closeDialog(btn.closest("dialog"));
         });
     });
-        dialogs.forEach((dialog) => {
-
-dialog.addEventListener('click', function(event) {
-  var rect = dialog.getBoundingClientRect();
-  var isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-    rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
-  if (!isInDialog) {
-    closeDialog(dialog);
-  }
-});});
+let gnawOverlay = document.getElementById("gnaw-overlay");
+gnawOverlay.addEventListener('click', function(event) {
+    console.log("clicked outside dialog")
+    closeDialog(gnawOverlay);
+});
     // Handle back/forward navigation
     window.addEventListener("popstate", (event) => {
         const openStates = Array.from(dialogs).filter(d => d.open);
