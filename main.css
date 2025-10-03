@@ -510,7 +510,11 @@ nav a:hover {
     height: 50vh;
 
 }
-
+@media screen and (max-width: 768px) {
+    .blueprint-container {
+    height: 70vh;
+    }
+}
 .blueprint-container.blueprint-container-no-height {
     height: auto;
 }
