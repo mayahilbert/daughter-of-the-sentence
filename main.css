@@ -510,36 +510,54 @@ nav a:hover {
     height: 50vh;
 
 }
+
 .blueprint1 {
-left:10%; margin-top:-20vh    }
+    left: 10%;
+    margin-top: -20vh
+}
 
-    .blueprint2 {
-right:8%;margin-bottom: -10%    }
+.blueprint2 {
+    right: 8%;
+    margin-bottom: -10%
+}
 
-    .blueprint3 {
-left:30%; margin-top:-10vh    }
+.blueprint3 {
+    left: 30%;
+    margin-top: -10vh
+}
 
-    .blueprint4 {
-right:-2%;margin-bottom: -30%    }
+.blueprint4 {
+    right: -2%;
+    margin-bottom: -30%
+}
 
-    .blueprint5 {
-left:3%; margin-top:-40%    }
+.blueprint5 {
+    left: 3%;
+    margin-top: -40%
+}
 
-    .blueprint6 {
-right:14%;margin-bottom: -7%    }
+.blueprint6 {
+    right: 14%;
+    margin-bottom: -7%
+}
 
-    .blueprint7 {
-left:-2%; margin-top:-60%    }
+.blueprint7 {
+    left: -2%;
+    margin-top: -60%
+}
 
-    .blueprint8 {
-right:0%;margin-top: -5%    }
+.blueprint8 {
+    right: 0%;
+    margin-top: -5%
+}
+
 @media screen and (max-width: 768px) {
     .blueprint-container {
         height: 40vh;
     }
 
     .blueprint1 {
-        margin-top: 70%;
+        margin-top: 40%;
     }
 
     .blueprint2 {
@@ -547,7 +565,7 @@ right:0%;margin-top: -5%    }
     }
 
     .blueprint3 {
-        margin-top: 50%;
+        margin-top: 30%;
     }
 
     .blueprint4 {
@@ -617,9 +635,11 @@ dialog[open] {
 dialog::backdrop {
     background-color: black;
 }
+
 dialog#gnaw-overlay {
     animation: none;
 }
+
 dialog#gnaw-overlay::backdrop {
     background-color: white;
 }
