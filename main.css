@@ -442,7 +442,7 @@ nav a:hover {
 
 .scroll-line {
     margin: 0 auto;
-    margin-right: 25px;
+    margin-right: 1.3em;
     width: 1px;
     height: 70px;
     background-color: rgba(0, 0, 0, 0.4);
