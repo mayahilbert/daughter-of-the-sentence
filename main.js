@@ -493,6 +493,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("close dialog")
 
         document.querySelector("#homepage").classList.remove('overlay-open');
+            document.querySelector("#homepage").classList.remove('overlay-open-light');
 
         lenis.start();
 
@@ -531,6 +532,16 @@ document.addEventListener("DOMContentLoaded", () => {
             closeDialog(btn.closest("dialog"));
         });
     });
+        dialogs.forEach((dialog) => {
+
+dialog.addEventListener('click', function(event) {
+  var rect = dialog.getBoundingClientRect();
+  var isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+    rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+  if (!isInDialog) {
+    closeDialog(dialog);
+  }
+});});
     // Handle back/forward navigation
     window.addEventListener("popstate", (event) => {
         const openStates = Array.from(dialogs).filter(d => d.open);
