@@ -245,7 +245,7 @@ body {
 
 
 .work-thumb {
-    width: clamp(300px, 30vw, 600px);
+    width: clamp(380px, 30vw, 600px);
     max-width: 100%;
     height: auto;
     align-self: flex-start;
@@ -436,8 +436,14 @@ nav a:hover {
 .scroll-prompt {
     position: fixed;
     bottom: 0;
-    right: 0;
+    right: 0.2em;
     z-index: 99999;
+}
+
+@media screen and (min-width: 768px) {
+    .scroll-prompt {
+        right: 0;
+    }
 }
 
 .scroll-line {
