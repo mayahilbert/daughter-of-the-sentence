@@ -605,6 +605,9 @@ dialog:not([open]) {
 
 
 /* Floating images */
+.hidden {
+    display: none;
+}
 .floating-img {
     width: clamp(180px, 20vw, 600px);
     height: auto;
