@@ -441,8 +441,7 @@ nav a:hover {
 }
 
 .scroll-line {
-    margin: 0 auto;
-    margin-right: 1.6rem;
+    margin-left: 1rem;
     width: 1px;
     height: 70px;
     background-color: rgba(0, 0, 0, 0.4);
@@ -645,10 +644,7 @@ dialog#gnaw-overlay {
 
 dialog#gnaw-overlay[open] {
     height: fit-content;
-    width: fit-content;
     background: transparent;
-    align-self: center;
-    margin: 0 auto;
 }
 
 dialog#gnaw-overlay::backdrop {
