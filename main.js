@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(SplitText);
     const lenis = new Lenis({
         infinite: true,
-        syncTouch: true
+        //syncTouch: true
     });
     // Add before your ScatterCursorEffect initialization
 
