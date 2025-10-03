@@ -520,7 +520,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gnawImgs.forEach((gnawImg) => {
         gnawImg.addEventListener("click", () => {
             document.getElementById("gnaw-main").setAttribute('src', gnawImg.getAttribute('src'));
-            gnawImg.classList.add("hidden");
+            //gnawImg.classList.add("hidden");
             console.log("clicked gnaw")
             openDialog(document.getElementById("gnaw-overlay"), "light");
         });
