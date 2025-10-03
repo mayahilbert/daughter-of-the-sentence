@@ -284,7 +284,7 @@ body {
     min-width: 100vw;
     padding: 10vh 0 50vh 0;
     margin: -3vh 0;
-    margin-left: -5%;
+    margin-left: -15%;
     transition: 1s;
     background-size: cover;
     background-clip: text;
@@ -510,11 +510,67 @@ nav a:hover {
     height: 50vh;
 
 }
+.blueprint1 {
+left:10%; margin-top:-20vh    }
+
+    .blueprint2 {
+right:8%;margin-bottom: -10%    }
+
+    .blueprint3 {
+left:30%; margin-top:-10vh    }
+
+    .blueprint4 {
+right:-2%;margin-bottom: -30%    }
+
+    .blueprint5 {
+left:3%; margin-top:-40%    }
+
+    .blueprint6 {
+right:14%;margin-bottom: -7%    }
+
+    .blueprint7 {
+left:-2%; margin-top:-60%    }
+
+    .blueprint8 {
+right:0%;margin-top: -5%    }
 @media screen and (max-width: 768px) {
     .blueprint-container {
-    height: 70vh;
+        height: 40vh;
+    }
+
+    .blueprint1 {
+        margin-top: 0;
+    }
+
+    .blueprint2 {
+        margin-top: 0;
+    }
+
+    .blueprint3 {
+        margin-top: 0;
+    }
+
+    .blueprint4 {
+        margin-top: 0;
+    }
+
+    .blueprint5 {
+        margin-top: 0;
+    }
+
+    .blueprint6 {
+        margin-top: 0;
+    }
+
+    .blueprint7 {
+        margin-top: 1em;
+    }
+
+    .blueprint8 {
+        margin-top: 2em;
     }
 }
+
 .blueprint-container.blueprint-container-no-height {
     height: auto;
 }
@@ -524,11 +580,12 @@ nav a:hover {
     justify-content: center;
     cursor: pointer;
     max-height: 80vh;
-    width: 100%;    align-self: center
+    width: 100%;
+    align-self: center
+}
 
-}
-.video-container iframe {
-}
+.video-container iframe {}
+
 .video-16-9 {
     aspect-ratio: 16/9;
     width: 85%;
@@ -556,7 +613,8 @@ dialog[open] {
     animation: myFadeIn 0.8s ease normal;
     display: flex;
 }
-dialog::backdrop{
+
+dialog::backdrop {
     background-color: black;
 }
 
@@ -597,7 +655,7 @@ dialog:not([open]) {
 @media screen and (max-width: 768px) {
     .close-btn {
         right: 1em;
-        left:auto;
+        left: auto;
     }
 }
 
@@ -608,6 +666,7 @@ dialog:not([open]) {
 .hidden {
     display: none;
 }
+
 .floating-img {
     width: clamp(180px, 20vw, 600px);
     height: auto;
