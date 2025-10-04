@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
             this.cursor = document.querySelector('.cursor');
 
             this.config = {
-                influenceRadius: 300,
+                influenceRadius: 600,
                 maxDisplacement: 200,
                 maxRotation: 50,
-                gsapDuration: 2,
+                gsapDuration: 6,
                 gsapEasing: "power2.out",
                 boundaries: { enabled: true, margin: 0 },
                 elementConfig: {},
@@ -393,17 +393,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 ".split-text",                    // Text selectors
                 ".floating",  // Image selectors
                 {
-                    // Global config
-                    influenceRadius: 300,
-                    maxDisplacement: 200,
-                    maxRotation: 50,
-
                     // Image-specific config
                     imageConfig: {
-                        influenceRadius: 160,
-                        maxDisplacement: 70,
-                        maxRotation: 10,
-                        gsapDuration: 2,
+                        influenceRadius: 600,
+                        maxDisplacement: 200,
+                        maxRotation: 20,
+                        gsapDuration: 4,
                         gsapEasing: "power2.out",
                         boundaries: { enabled: true, margin: 100 }
                     }
@@ -586,3 +581,34 @@ gnawOverlay.addEventListener('click', function(event) {
 });
 
 
+const btnThemeToggle = document.getElementById("btn-theme-toggle");
+const root = document.querySelector("html");
+const themeItems = [];
+
+const LOCAL_STORAGE_PREFIX = "DARKMODE-TOGGLE";
+const DARKMODE_STORAGE_KEY = `${LOCAL_STORAGE_PREFIX}-theme`;
+
+btnThemeToggle.addEventListener("click", (e) => {
+	root.classList.toggle("dark-mode");
+    document.getElementById("btn-theme-toggle").classList.toggle("theme-toggle--toggled");
+	const rootClass = root.getAttribute("class");
+
+	const btnPressed = e.target.getAttribute("aria-pressed") === "true";
+	e.target.setAttribute("aria-pressed", String(!btnPressed));
+
+	themeItems.push(rootClass, !btnPressed);
+
+	localStorage.setItem(DARKMODE_STORAGE_KEY, JSON.stringify(themeItems));
+
+	themeItems.length = 0;
+});
+
+const setTheme = function () {
+	const activeTheme = JSON.parse(localStorage.getItem(DARKMODE_STORAGE_KEY)) || [
+		"",
+		"false"
+	];
+	root.className = activeTheme[0];
+	btnThemeToggle.setAttribute("aria-pressed", String(activeTheme[1]));
+};
+setTheme();
