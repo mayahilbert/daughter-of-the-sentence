@@ -395,10 +395,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 {
                     // Image-specific config
                     imageConfig: {
-                        influenceRadius: 600,
-                        maxDisplacement: 200,
+                        influenceRadius: 220,
+                        maxDisplacement: 120,
                         maxRotation: 20,
-                        gsapDuration: 4,
+                        gsapDuration: 3,
                         gsapEasing: "power2.out",
                         boundaries: { enabled: true, margin: 100 }
                     }
