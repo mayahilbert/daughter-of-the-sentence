@@ -128,6 +128,7 @@ textarea:not([rows]) {
     --main-bg-color: #dad2b8;
     --main-text-color: black;
     --highlight-text-color: black;
+    --light-text-color: #dad2b8;
 
 }
 
@@ -281,7 +282,7 @@ body {
     margin-top: -2em;
     position: absolute;
     font-family: "Neutral Face Bold", Arial, Helvetica, sans-serif;
-    color: var(--main-text-color);
+    color: var(--light-text-color);
     text-transform: uppercase;
     letter-spacing: 0.14em;
     font-weight: 500;
@@ -290,6 +291,10 @@ body {
 
 .usage-note p {
     mix-blend-mode: difference;
+}
+
+.cling-note p {
+    color: black;
 }
 
 .split-text {
