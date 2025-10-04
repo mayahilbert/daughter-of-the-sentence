@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.cursor = document.querySelector('.cursor');
 
             this.config = {
-                influenceRadius: 600,
+                influenceRadius: 500,
                 maxDisplacement: 200,
                 maxRotation: 50,
                 gsapDuration: 6,
