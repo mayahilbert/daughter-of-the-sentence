@@ -261,7 +261,7 @@ body {
 
 
 .work-thumb {
-    width: clamp(380px, 50vw, 45em);
+    width: clamp(380px, 50vw, 49em);
     max-width: 100%;
     height: auto;
     align-self: flex-start;
@@ -301,11 +301,11 @@ body {
 }
 
 .split-text {
-    text-align: center;
+    text-align: left;
     min-width: 100vw;
     padding: 10vh 0 50vh 0;
     margin: -3vh 0;
-    margin-left: -15%;
+    margin-left: 5%;
     transition: 1s;
     background-size: cover;
     background-clip: text;
