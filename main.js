@@ -382,7 +382,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize with both text and images
     window.addEventListener("load", () => {
         console.log('Page loaded, initializing effect...');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+if (!prefersReducedMotion.matches) {
         try {
             const splittest = SplitText.create(".background", {
                 type: "words, chars",
@@ -426,7 +428,11 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Error initializing:', e.message);
             console.error('Stack:', e.stack);
         }
-
+} else {
+    document.querySelectorAll(".split-text").forEach(element => {
+  element.style.color = "var(--main-text-color";
+})
+}
 
     });
     // End scattered letters effect
