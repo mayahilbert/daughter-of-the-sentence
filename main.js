@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
         infinite: true,
         syncTouch: true
     });
-    // Add before your ScatterCursorEffect initialization
 
     class ScatterCursorEffect {
         constructor(cssSelectors, imageSelectors = [], options = {}) {
@@ -24,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 boundaries: { enabled: true, margin: 0 },
                 elementConfig: {},
                 imageConfig: {
-                    influenceRadius: 350,
-                    maxDisplacement: 150,
-                    maxRotation: 30,
-                    gsapDuration: 1.8,
+                    influenceRadius: 220,
+                    maxDisplacement: 120,
+                    maxRotation: 20,
+                    gsapDuration: 3,
                     gsapEasing: "power2.out",
-                    boundaries: { enabled: true, margin: 10 }
+                    boundaries: { enabled: true, margin: 100 }
                 },
                 ...options
             };
@@ -337,19 +336,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Apply boundaries if enabled (relative to original position)
                 if (cfg.boundaries.enabled) {
-                    const margin = cfg.boundaries.margin;
-
-                    // Get the parent container bounds if available
-                    const parent = img.parentElement;
-                    const parentRect = parent.getBoundingClientRect();
-                    const imgRect = img.getBoundingClientRect();
-
-                    // Calculate boundaries relative to the image's container
-                    const maxX = (parentRect.right - parentRect.left) - img._width / 2 - margin;
-                    const maxY = (parentRect.bottom - parentRect.top) - img._height / 2 - margin;
-                    const minX = -(img._width / 2) + margin;
-                    const minY = -(img._height / 2) + margin;
-
                     // Clamp displacement to stay within reasonable bounds of original position
                     const maxDisplacement = cfg.maxDisplacement;
                     img._permanent.x = Math.max(-maxDisplacement, Math.min(img._permanent.x, maxDisplacement));
@@ -381,58 +367,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize with both text and images
     window.addEventListener("load", () => {
-        console.log('Page loaded, initializing effect...');
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-if (!prefersReducedMotion.matches) {
-        try {
-            const splittest = SplitText.create(".background", {
-                type: "words, chars",
-                charsClass: "char2",
-                reduceWhiteSpace: false
-            });
-            const effect = new ScatterCursorEffect(
-                ".split-text",                    // Text selectors
-                ".floating",  // Image selectors
-                {
-                    // Image-specific config
-                    imageConfig: {
-                        influenceRadius: 220,
-                        maxDisplacement: 120,
-                        maxRotation: 20,
-                        gsapDuration: 3,
-                        gsapEasing: "power2.out",
-                        boundaries: { enabled: true, margin: 100 }
-                    }
-                }
-            );
-            console.log('Effect initialized');
-            console.log('Text containers:', effect.textContainers.length);
-            console.log('Image elements:', effect.imageElements.length);
-
-            // Check first text container
-            if (effect.textContainers.length > 0) {
-                const first = effect.textContainers[0];
-                console.log('First container chars:', first.characters.length);
-                console.log('First char:', first.characters[0]);
-                console.log('First char visible?',
-                    window.getComputedStyle(first.characters[0]).opacity,
-                    window.getComputedStyle(first.characters[0]).display
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (!prefersReducedMotion.matches) {
+            try {
+                const effect = new ScatterCursorEffect(
+                    ".split-text", // Text selectors
+                    ".floating",  // Image selectors
                 );
+
+                // Make effect available globally for manual testing
+                window.debugEffect = effect;
+
+            } catch (e) {
+                console.error('Error initializing:', e.message);
+                console.error('Stack:', e.stack);
             }
-
-            // Make effect available globally for manual testing
-            window.debugEffect = effect;
-
-        } catch (e) {
-            console.error('Error initializing:', e.message);
-            console.error('Stack:', e.stack);
+        } else {
+            document.querySelectorAll(".split-text").forEach(element => {
+                element.style.color = "var(--main-text-color";
+            })
         }
-} else {
-    document.querySelectorAll(".split-text").forEach(element => {
-  element.style.color = "var(--main-text-color";
-})
-}
 
     });
     // End scattered letters effect
@@ -477,28 +431,30 @@ if (!prefersReducedMotion.matches) {
         console.log("open dialog")
         if (theme == "light") {
             document.querySelector("#homepage").classList.add('overlay-open-light');
-
         } else {
             document.querySelector("#homepage").classList.add('overlay-open');
-
         }
+
         lenis.stop();
-        //setTimeout(function () {
         dialog.showModal();
         history.pushState({ dialogId: dialog.id }, ""); // store which dialog is open
-        //}, 1000);
+        if (dialog.querySelectorAll("iframe")[0]) {
+            var vimeoPlayer = new Vimeo.Player(dialog.querySelectorAll("iframe")[0]);
+            vimeoPlayer.play();
+        }
+
     }
 
     function closeDialog(dialog) {
         dialog.close();
         console.log("close dialog")
-
+        if (dialog.querySelectorAll("iframe")[0]) {
+            var vimeoPlayer = new Vimeo.Player(dialog.querySelectorAll("iframe")[0]);
+            vimeoPlayer.pause();
+        }
         document.querySelector("#homepage").classList.remove('overlay-open');
-            document.querySelector("#homepage").classList.remove('overlay-open-light');
-
+        document.querySelector("#homepage").classList.remove('overlay-open-light');
         lenis.start();
-
-
     }
 
     document.getElementById("minders-open").addEventListener("click", () => {
@@ -521,11 +477,11 @@ if (!prefersReducedMotion.matches) {
     gnawImgs.forEach((gnawImg) => {
         gnawImg.addEventListener("click", () => {
             document.getElementById("gnaw-main").setAttribute('src', gnawImg.getAttribute('src'));
-            //gnawImg.classList.add("hidden");
             console.log("clicked gnaw")
             openDialog(document.getElementById("gnaw-overlay"), "light");
         });
     });
+    
     // Close buttons
     let closeBtns = document.querySelectorAll(".close-btn")
 
@@ -534,87 +490,21 @@ if (!prefersReducedMotion.matches) {
             closeDialog(btn.closest("dialog"));
         });
     });
-let gnawOverlay = document.getElementById("gnaw-overlay");
-gnawOverlay.addEventListener('click', function(event) {
-    console.log("clicked outside dialog")
-    closeDialog(gnawOverlay);
-});
+    let gnawOverlay = document.getElementById("gnaw-overlay");
+    gnawOverlay.addEventListener('click', function (event) {
+        console.log("clicked outside dialog")
+        closeDialog(gnawOverlay);
+    });
     // Handle back/forward navigation
     window.addEventListener("popstate", (event) => {
         const openStates = Array.from(dialogs).filter(d => d.open);
 
         if (event.state && event.state.dialogId) {
             const dlg = document.getElementById(event.state.dialogId);
-            if (!dlg.open) dlg.showModal();
+            if (!dlg.open) dlg.openDialog();
         } else if (openStates.length) {
-            openStates[openStates.length - 1].close();
+            closeDialog(openStates[openStates.length - 1]);
         }
     });
     //End overlay
-
-    //Scatter images
-    // Customize these values
-    const imageUrls = [
-        'images/gnaw/Sullivan_Blueprint1.jpg',
-        'images/gnaw/Sullivan_Blueprint2.jpg',
-        'images/gnaw/Sullivan_Blueprint3.jpg',
-        'images/gnaw/Sullivan_Blueprint4.jpg',
-        'images/gnaw/Sullivan_Blueprint5.jpg',
-        'images/gnaw/Sullivan_Blueprint6.jpg',
-        'images/gnaw/Sullivan_Blueprint7.jpg',
-        'images/gnaw/Sullivan_Blueprint8.jpg',
-    ];
-
-    // Create images and scatter them
-    const gnawContainer = document.getElementById('gnaw-container');
-    //for (let i = 0; i < imageUrls.length; i++) {
-    //    const imgDiv = document.createElement('div');
-    //    imgDiv.className = 'floating';
-    //    const img = document.createElement('img');
-    //    img.className = 'floating-img';
-
-    //    img.src = imageUrls[i % imageUrls.length];
-    //    imgDiv.appendChild(img);
-    //    gnawContainer.appendChild(imgDiv);
-
-    //    // Random position
-    //    imgDiv.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
-    //    imgDiv.style.top = `${Math.random() * (gnawContainer.getBoundingClientRect().height)}px`;
-        
-    //}
-    
-
 });
-
-
-const btnThemeToggle = document.getElementById("btn-theme-toggle");
-const root = document.querySelector("html");
-const themeItems = [];
-
-const LOCAL_STORAGE_PREFIX = "DARKMODE-TOGGLE";
-const DARKMODE_STORAGE_KEY = `${LOCAL_STORAGE_PREFIX}-theme`;
-
-btnThemeToggle.addEventListener("click", (e) => {
-	root.classList.toggle("dark-mode");
-    document.getElementById("btn-theme-toggle").classList.toggle("theme-toggle--toggled");
-	const rootClass = root.getAttribute("class");
-
-	const btnPressed = e.target.getAttribute("aria-pressed") === "true";
-	e.target.setAttribute("aria-pressed", String(!btnPressed));
-
-	themeItems.push(rootClass, !btnPressed);
-
-	localStorage.setItem(DARKMODE_STORAGE_KEY, JSON.stringify(themeItems));
-
-	themeItems.length = 0;
-});
-
-const setTheme = function () {
-	const activeTheme = JSON.parse(localStorage.getItem(DARKMODE_STORAGE_KEY)) || [
-		"",
-		"false"
-	];
-	root.className = activeTheme[0];
-	btnThemeToggle.setAttribute("aria-pressed", String(activeTheme[1]));
-};
-setTheme();
